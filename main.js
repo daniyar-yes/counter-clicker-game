@@ -1,3 +1,4 @@
+console.log('hello world');
 var firstVariable = 10000;
 
 let secondVariable = 20;
