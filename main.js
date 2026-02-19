@@ -1,105 +1,42 @@
-// // Number and String.
-
-// let variableThatStoresANumber = 152;
-
-// console.log('var for number',variableThatStoresANumber)
-
-// let varThatStoresAString = "text with spaces, or Numbers 123, or antyhing172381238218321@$#$!";
-
-// console.log('var for string:', varThatStoresAString)
-
-
-// let varForBoolean = false;
-
-// console.log('var for Boolean', varForBoolean)
-
-
-// let varForArray = [];
-// // {}, Set, Map
-
-// console.log('var for array', varForArray)
-
-// varForArray = [false,2,true,4,5];
-
-// console.log('var for array after change 1', varForArray)
-
-
-// varForArray.push('ten');
-
-// console.log('var for array after change 2', varForArray)
-
-
-let number1 = [100.5, 1, 1523];
-
-let number2 = -0.000001;
-
-let result;
-
-result = Math.floor(number1);
-
-let result2 = Math.ceil(number2)
-
-let positive0 = 0;
-let negative0 = -0;
-
-let resultOfComparison = positive0 == negative0;
-
-
-
-let posNum = 6.5;
-let negNum = -6.5;
-
-let resultRoundPosUp = Math.ceil(posNum);
-let resultRoundPosDown = Math.floor(posNum);
-let resultRoundNegUp = Math.ceil(negNum);
-let resultRoundNegDown = Math.floor(negNum);
-
-// console.log({resultRoundPosUp}, 
-//             {resultRoundPosDown},
-//             {resultRoundNegUp}, 
-//             {resultRoundNegDown}
-// )
-
-let comparisonResult = posNum !== negNum;
-
-// console.log({comparisonResult})
-
-let anotherBooleanVar = true;
-
-// console.log(!!anotherBooleanVar)
-//          not not not not not not true
-
-
-let resultFromBE = 'string from BE';
-
-let isShowing = resultFromBE;
-
-// console.log(isShowing);
-
-
-
-
-let newStringVar = 'forty two ';
-
-// console.log(newStringVar);
-
-// concatenation, concat
-
-let anotherStringVar = 25;
-
-console.log((newStringVar + anotherStringVar))
-
-let lenghtOfAString = newStringVar.length;
-console.log({lenghtOfAString})
-
-// the problem with fluid typing (or lack of strong typing in JS)
-// you can put anything to outputValue variable, and JS will not shown an error
-// there is a solution to weak types in JS - TypeScript, TS
 let someOtherFunctionsOutputValue = 'two hundred';
+
+// below is a programmed behavior, action, that adds 2 numbers
+// one number is received as an input (created somewhere up the code)
+// then it creates and assigns value (100) to a pre-configured variable in the valueToBeAdded
+// then the action declares a constant variable result of a function of add 100
+// and this action adds that 1 pre-configured number to the input number
+// and then is stores (puts, assigns) that value into that constant variable
+// then the resulting variable is logged in the console.
+
 
 let inputValue = someOtherFunctionsOutputValue;
 let valueToBeAdded = 100;
 
-const resultOfAFunctionAdds100 = inputValue - valueToBeAdded;
+const resultOfAFunctionAdds100 = inputValue + valueToBeAdded;
 
-console.log({resultOfAFunctionAdds100})
+// console.log({resultOfAFunctionAdds100})
+
+// now we re-work the behavior (action) from above to use a JS function syntax
+const result = 'result from outside the scope of the code'
+//result variable ehre is public, global
+
+// Function declaration
+function add100(inputNumber) {
+    const NUMBER_TO_BE_ADDED = 100;
+    console.log('input from the add100:', inputNumber)
+    console.log('type of input number:', typeof inputNumber)
+
+    const result = inputNumber + NUMBER_TO_BE_ADDED;
+    // result variable inside the scope of a function is
+    // isolated, or private, to that function scope - {}
+    console.log('this log is called from inside the function add100', result)
+    console.log('type of result:', typeof result)
+
+    console.log('trying to apply numeric operation on result:', Math.pow(result, 2))
+
+}
+
+
+add100(999);
+
+
