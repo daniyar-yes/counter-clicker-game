@@ -20,23 +20,23 @@ const resultOfAFunctionAdds100 = inputValue + valueToBeAdded;
 const result = 'result from outside the scope of the code'
 //result variable ehre is public, global
 let Math = {
-    pow(a,b) { return a-b },
+    pow(a, b) { return a - b },
 }
 
 // Function declaration
 function add100(inputNumber) {
     const NUMBER_TO_BE_ADDED = 100;
-    console.log('input from the add100:', inputNumber)
-    console.log('type of input number:', typeof inputNumber)
+    // console.log('input from the add100:', inputNumber)
+    // console.log('type of input number:', typeof inputNumber)
 
     const result = inputNumber + NUMBER_TO_BE_ADDED;
-    
+
     // result variable inside the scope of a function is
     // isolated, or private, to that function scope - {}
-    console.log('this log is called from inside the function add100', result)
-    console.log('type of result:', typeof result)
+    // console.log('this log is called from inside the function add100', result)
+    // console.log('type of result:', typeof result)
 
-    console.log('trying to apply numeric operation on result:', Math.pow(result, 3))
+    // console.log('trying to apply numeric operation on result:', Math.pow(result, 3))
 
 }
 
@@ -59,12 +59,12 @@ const exampleOfAnObject = {
     name: "Daniyar",
     lastName: 'hhihihi',
     dateofbirth: 1251231,
-    sayHi() { console.log('hi')},
+    // sayHi() { console.log('hi')},
 }
 
 let alert = 'sayhi'
 
-console.log(alert);
+// console.log(alert);
 
 // I want a function that will take 2 inputs (params) - number
 // Then I want it to compare if one is greater than another
@@ -79,3 +79,27 @@ function isFirstGreaterThanSecond(numero1, numero2) {
         return 'no, not correct, wrong'
     }
 }
+
+let fruits = ['🍏', '🍌', '🍍', '🍎', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍎', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕', '🥕', '🍏', '🍌', '🍍', '🥕', '🍏', '🍌', '🍍', '🥕'];
+
+let sumOfBananas = 0;
+
+for (let n = 0; n < fruits.length; n++) {
+    if (fruits[n] == '🍎') {
+        console.log(n)
+        sumOfBananas++;
+    }
+}
+
+// console.log(sumOfBananas)
+
+
+
+
+
+
+
+// fruits.forEach(i => console.log(i))
+
+
+
