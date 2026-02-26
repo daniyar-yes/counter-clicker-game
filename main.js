@@ -29,6 +29,28 @@
 // mechanics themselves (how to play, score)
 // the result: what is a victory and what do we show on victory.
 
+// adding a timer that will show like:
+// enter a number within the range: 450 to 677 (expected count range)
+// and it gives you like 10 seconds (any interval) to get there - per 1 step
+// after which the function that checks/compares current count with the expected count range is fired
+// if the number is within the range, the user gets 1 point
+// victory condition: to score 3 points - or to get the highest point withint the game's main time limit
+
+// goal: get the highest score possible
+// challenge: 60 seconds - main larger counter for the whole game session
+
+// progression - leveling up, using points they obtained to buy enhancements:
+// +1000 button should not be available by default, but bought from inventory
+// maybe initially the available buttons will be only +1, -1
+// the cheapest enhancement will cost 1 point (+10, -10)
+
+// always show current score
+// show the best score in the localstorage even after refresh - highest scores ever
+
+// we need a start button for the game session, that will launch a longer timer (60s, or 30s)
+// each iteration - number to get on the counter, will be limited by a smaller time.
+
+// TODO: definitely later: leaderboard (for localstorage) and user names (enter name before the game)
 
 const COUNT_INITIAL_STATE = 0;
 

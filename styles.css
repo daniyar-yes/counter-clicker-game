@@ -4,3 +4,14 @@ main {
     justify-content: center;
     align-items: center;
 }
+
+.main-counter-row {
+    display: flex;
+    flex-direction: row;
+}
+
+#boost-shop {}
+
+.main-row-group {
+    padding-bottom: 8px;
+}
