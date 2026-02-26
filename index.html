@@ -9,19 +9,38 @@
 </head>
 
 <body>
+    <header>
+        <div id="rules-section">Rules/goals:
+            <p>Use '+,-' buttons to get the current number to fall within range prompted to you.</p>
+        </div>
+        <div id="game-start-section">
+            <div>
+                <button>30s</button>
+                <button>60s</button>
+            </div>
+            <button id="start-btn">Start</button>
+            <div id="countdown">59s</div>
+        </div>
+        <div style="color: rgb(192, 191, 191)">Top Scores:</div>
+
+    </header>
     <main>
-        <h4>Click it!</h4>
+
+        <div>Current points: <span id="current-points">0</span></div>
+        <div>Current task: <span id="current task">Placeholder text</span></div>
 
         <div class="main-counter-row main-row-group">
 
             <button id="plus-one-btn">+1</button>
-            <button id="plus-one-btn">-1</button>
+            <button id="minus-one-btn">-1</button>
             <button id="plus-ten-btn" disabled="true">+10</button>
             <button id="plus-ten-btn" disabled="true">-10</button>
             <button id="plus-ten-btn" disabled="true">+100</button>
             <button id="plus-ten-btn" disabled="true">-100</button>
             <button id="reset-count-btn">Reset</button>
         </div>
+
+        <h4>Current number: <span id="counter">0</span></h4>
 
         <div id="boost-shop" class="main-row-group">
             Buy boosts:
@@ -30,33 +49,6 @@
             <button id="plus-ten-btn">Buy: +100</button>
             <button id="plus-ten-btn">Buy: -100</button>
         </div>
-
-                <div id="boost-shop" class="main-row-group">
-            Buy boosts:
-            <button id="plus-ten-btn">Buy: +10</button>
-            <button id="plus-ten-btn">Buy: -10</button>
-            <button id="plus-ten-btn">Buy: +100</button>
-            <button id="plus-ten-btn">Buy: -100</button>
-        </div>
-
-                <div id="boost-shop" class="main-row-group">
-            Buy boosts:
-            <button id="plus-ten-btn">Buy: +10</button>
-            <button id="plus-ten-btn">Buy: -10</button>
-            <button id="plus-ten-btn">Buy: +100</button>
-            <button id="plus-ten-btn">Buy: -100</button>
-        </div>
-
-                <div id="boost-shop" class="main-row-group">
-            Buy boosts:
-            <button id="plus-ten-btn">Buy: +10</button>
-            <button id="plus-ten-btn">Buy: -10</button>
-            <button id="plus-ten-btn">Buy: +100</button>
-            <button id="plus-ten-btn">Buy: -100</button>
-        </div>
-
-
-        <h4>Total score: <span id="counter">0</span></h4>
     </main>
 </body>
 

@@ -59,6 +59,8 @@ let count = COUNT_INITIAL_STATE;
 
 
 const plusOneButton = document.querySelector("#plus-one-btn");
+const minusOneButton = document.querySelector("#minus-one-btn");
+
 const plusTenButton = document.querySelector("#plus-ten-btn");
 const resetCountButton = document.querySelector("#reset-count-btn");
 const totalCountSpan = document.querySelector("#counter")
@@ -66,6 +68,11 @@ totalCountSpan.textContent = count;
 
 plusOneButton.addEventListener("click", (event) => {
   count = count + 1;
+  totalCountSpan.textContent = count;
+});
+
+minusOneButton.addEventListener("click", (event) => {
+  count = count - 1;
   totalCountSpan.textContent = count;
 });
 
