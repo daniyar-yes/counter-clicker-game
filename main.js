@@ -53,8 +53,14 @@
 // TODO: definitely later: leaderboard (for localstorage) and user names (enter name before the game)
 
 const COUNT_INITIAL_STATE = 0;
+const CURRENT_POINTS_INITIAL_VALUE = 0;
 
 let count = COUNT_INITIAL_STATE;
+let finalScore;
+let currentPoints = CURRENT_POINTS_INITIAL_VALUE;
+let selectedTimeLength;
+let isGameRunning = false;
+
 
 
 
@@ -85,6 +91,14 @@ resetCountButton.addEventListener("click", (event) => {
   count = COUNT_INITIAL_STATE;
   totalCountSpan.textContent = count;
 });
+
+function captureFinalScore(currentScore) {
+  finalScore = currentScore;
+  console.log(finalScore)
+  // break the game loop
+}
+// non-functional yet timer
+setTimeout(captureFinalScore(currentPoints), 60 * 1000);
 
 
 // below is a good example of intentional function naming, and internal
