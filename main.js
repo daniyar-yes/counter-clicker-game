@@ -1,111 +1,204 @@
-// This is our main state: count
-// it's best to define the variables (or states) early on in code for 2 reasons:
-// 1st: ensuring that the variable is available to your JS code before it's read (used)
-// NOTE: please read about Hoisting: https://developer.mozilla.org/en-US/docs/Glossary/Hoisting
-// 2nd: to ensure the intentional and easy-to-read and understand style of code, DISTINCTS NAMES (to avoid confusion)
-// example of confusing name: `moveLeft()`; example of a distinct and explicit name: `collapseHideButtonInHeaderMenuToTheLeft()`
+// ---------- DOM ----------
+const elPoints = document.getElementById("current-points");
+const elTask = document.getElementById("current-task");
+const elCounter = document.getElementById("counter");
+const elCountdown = document.getElementById("countdown");
+const startBtn = document.getElementById("start-btn");
 
-// or improved good example (pseudo-code):
+// Counter buttons
+const plus1Btn = document.getElementById("plus-one-btn");
+const minus1Btn = document.getElementById("minus-one-btn");
+const plus10Btn = document.getElementById("plus-ten-btn");
+const minus10Btn = document.getElementById("minus-ten-btn");
+const plus100Btn = document.getElementById("plus-hundred-btn");
+const minus100Btn = document.getElementById("minus-hundred-btn");
+const resetBtn = document.getElementById("reset-count-btn");
 
-// function collapseHideButton(direction) {}
-// function headerMenuAdjustment(direction) {
-//    collapseHideButton(direction)
-// }
-// headerMenuAdjustment('left')
+// Shop buttons
+const buyPlus10Btn = document.getElementById("buy-plus-ten-btn");
+const buyMinus10Btn = document.getElementById("buy-minus-ten-btn");
+const buyPlus100Btn = document.getElementById("buy-plus-hundred-btn");
+const buyMinus100Btn = document.getElementById("buy-minus-hundred-btn");
 
-// it used to be important to make your code easy to digest by other developers when they need to update your code
-// that 'other developer' can be You - just in a few months from now
-// nowadays, you write code (using AI/LLM) that another AI will be reading
-// it could be your AI working on a new task, or other developers' AI agents
-// important: AI skims through the whole file whenever it tries to understand even a small bug.
+// Duration buttons (the 30s / 60s ones in your header)
+const durationBtns = Array.from(
+  document.querySelectorAll("#game-start-section button")
+).filter((b) => b !== startBtn);
 
-// console.log as a function itself has a higher priority in the queue for executing
-// sync/async functions, sync function execute first, console.log is sync function, fires immediately
+// ---------- GAME STATE ----------
+let counter = 0;
+let points = 0;
 
+let gameRunning = false;
+let timeLeft = 60;
+let timerId = null;
 
-// TODO: add an actual game mechanics - how to win, or how to even score anything
-// some conditions (if, else, switch cases) for scoring
-// conditions for winning
-// mechanics themselves (how to play, score)
-// the result: what is a victory and what do we show on victory.
+let task = null; // { min, max }
 
-// adding a timer that will show like:
-// enter a number within the range: 450 to 677 (expected count range)
-// and it gives you like 10 seconds (any interval) to get there - per 1 step
-// after which the function that checks/compares current count with the expected count range is fired
-// if the number is within the range, the user gets 1 point
-// victory condition: to score 3 points - or to get the highest point withint the game's main time limit
+// boosts unlocked
+let unlocked = {
+  plus10: false,
+  minus10: false,
+  plus100: false,
+  minus100: false,
+};
 
-// goal: get the highest score possible
-// challenge: 60 seconds - main larger counter for the whole game session
-
-// progression - leveling up, using points they obtained to buy enhancements:
-// +1000 button should not be available by default, but bought from inventory
-// maybe initially the available buttons will be only +1, -1
-// the cheapest enhancement will cost 1 point (+10, -10)
-
-// always show current score
-// show the best score in the localstorage even after refresh - highest scores ever
-
-// we need a start button for the game session, that will launch a longer timer (60s, or 30s)
-// each iteration - number to get on the counter, will be limited by a smaller time.
-
-// TODO: definitely later: leaderboard (for localstorage) and user names (enter name before the game)
-
-const COUNT_INITIAL_STATE = 0;
-const CURRENT_POINTS_INITIAL_VALUE = 0;
-
-let count = COUNT_INITIAL_STATE;
-let finalScore;
-let currentPoints = CURRENT_POINTS_INITIAL_VALUE;
-let selectedTimeLength;
-let isGameRunning = false;
-
-
-
-
-const plusOneButton = document.querySelector("#plus-one-btn");
-const minusOneButton = document.querySelector("#minus-one-btn");
-
-const plusTenButton = document.querySelector("#plus-ten-btn");
-const resetCountButton = document.querySelector("#reset-count-btn");
-const totalCountSpan = document.querySelector("#counter")
-totalCountSpan.textContent = count;
-
-plusOneButton.addEventListener("click", (event) => {
-  count = count + 1;
-  totalCountSpan.textContent = count;
-});
-
-minusOneButton.addEventListener("click", (event) => {
-  count = count - 1;
-  totalCountSpan.textContent = count;
-});
-
-plusTenButton.addEventListener("click", (event) => {
-  count = count + 10;
-  totalCountSpan.textContent = count;
-});
-
-resetCountButton.addEventListener("click", (event) => {
-  count = COUNT_INITIAL_STATE;
-  totalCountSpan.textContent = count;
-});
-
-function captureFinalScore(currentScore) {
-  finalScore = currentScore;
-  console.log(finalScore)
-  // break the game loop
+// ---------- HELPERS ----------
+function setText(el, value) {
+  el.textContent = String(value);
 }
-// non-functional yet timer
-setTimeout(captureFinalScore(currentPoints), 60 * 1000);
 
+function updateUI() {
+  setText(elCounter, counter);
+  setText(elPoints, points);
+  setText(elCountdown, `${timeLeft}s`);
 
-// below is a good example of intentional function naming, and internal
-// transitionary variable 'sum' naming.
-// could have been replaced by simply { return a + b + c; }
+  // Enable/disable main buttons based on boosts + running state
+  plus1Btn.disabled = !gameRunning;
+  minus1Btn.disabled = !gameRunning;
+  resetBtn.disabled = !gameRunning;
 
-// function calculateTheSumOfInput(a,b,c) {
-//   let sum = a + b + c;
-//   return sum;
-// }
+  plus10Btn.disabled = !(gameRunning && unlocked.plus10);
+  minus10Btn.disabled = !(gameRunning && unlocked.minus10);
+  plus100Btn.disabled = !(gameRunning && unlocked.plus100);
+  minus100Btn.disabled = !(gameRunning && unlocked.minus100);
+
+  // Shop is only useful while running
+  buyPlus10Btn.disabled = !gameRunning || unlocked.plus10;
+  buyMinus10Btn.disabled = !gameRunning || unlocked.minus10;
+  buyPlus100Btn.disabled = !gameRunning || unlocked.plus100;
+  buyMinus100Btn.disabled = !gameRunning || unlocked.minus100;
+}
+
+function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function makeNewTask() {
+  // Simple difficulty scaling: ranges get wider as points increase
+  const width = Math.min(20 + points * 2, 80); // max width 80
+  const center = randomInt(-50, 50);
+
+  const min = center - Math.floor(width / 2);
+  const max = center + Math.floor(width / 2);
+
+  task = { min, max };
+  elTask.textContent = `Get the number between ${min} and ${max} (inclusive)`;
+}
+
+function isCounterInRange() {
+  return counter >= task.min && counter <= task.max;
+}
+
+function awardPointAndNewTask() {
+  points += 1;
+  makeNewTask();
+  updateUI();
+}
+
+function applyDelta(delta) {
+  if (!gameRunning) return;
+  counter += delta;
+  updateUI();
+
+  // Check win condition for current task
+  if (task && isCounterInRange()) {
+    awardPointAndNewTask();
+  }
+}
+
+function resetGameState() {
+  counter = 0;
+  points = 0;
+  unlocked = { plus10: false, minus10: false, plus100: false, minus100: false };
+  task = null;
+}
+
+// ---------- TIMER ----------
+function stopGame() {
+  gameRunning = false;
+  if (timerId) clearInterval(timerId);
+  timerId = null;
+
+  elTask.textContent = `Game over! Final score: ${points}. Press Start to play again.`;
+  updateUI();
+}
+
+function startGame() {
+  resetGameState();
+  gameRunning = true;
+  makeNewTask();
+  updateUI();
+
+  timerId = setInterval(() => {
+    timeLeft -= 1;
+    updateUI();
+    if (timeLeft <= 0) stopGame();
+  }, 1000);
+}
+
+// ---------- SHOP ----------
+function buyBoost(type) {
+  if (!gameRunning) return;
+
+  // Simple prices (tweak freely)
+  const prices = {
+    plus10: 3,
+    minus10: 3,
+    plus100: 10,
+    minus100: 10,
+  };
+
+  const cost = prices[type];
+  if (points < cost) {
+    elTask.textContent = `Not enough points to buy that (cost: ${cost}).`;
+    return;
+  }
+
+  points -= cost;
+  unlocked[type] = true;
+  elTask.textContent = `Bought ${type}!`;
+  updateUI();
+}
+
+// ---------- EVENTS ----------
+
+// duration selection
+durationBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const label = btn.textContent.trim().toLowerCase();
+    if (label.includes("30")) timeLeft = 30;
+    if (label.includes("60")) timeLeft = 60;
+    updateUI();
+  });
+});
+
+startBtn.addEventListener("click", () => {
+  if (gameRunning) return;
+  // If user hasn't clicked 30s/60s, keep whatever is in timeLeft (defaults to 60)
+  startGame();
+});
+
+plus1Btn.addEventListener("click", () => applyDelta(+1));
+minus1Btn.addEventListener("click", () => applyDelta(-1));
+
+plus10Btn.addEventListener("click", () => applyDelta(+10));
+minus10Btn.addEventListener("click", () => applyDelta(-10));
+
+plus100Btn.addEventListener("click", () => applyDelta(+100));
+minus100Btn.addEventListener("click", () => applyDelta(-100));
+
+resetBtn.addEventListener("click", () => {
+  if (!gameRunning) return;
+  counter = 0;
+  updateUI();
+});
+
+buyPlus10Btn.addEventListener("click", () => buyBoost("plus10"));
+buyMinus10Btn.addEventListener("click", () => buyBoost("minus10"));
+buyPlus100Btn.addEventListener("click", () => buyBoost("plus100"));
+buyMinus100Btn.addEventListener("click", () => buyBoost("minus100"));
+
+// ---------- INIT ----------
+updateUI();
+elTask.textContent = "Press Start to begin.";
