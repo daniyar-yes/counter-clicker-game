@@ -18,16 +18,26 @@
                 <button id="time-30-btn">30s</button>
                 <button id="time-60-btn">60s</button>
             </div>
+            <div>
+                <label for="player-name">Name:</label>
+                <input id="player-name" type="text" placeholder="Player" />
+                <button id="pause-btn" disabled>Pause</button>
+            </div>
             <button id="start-btn">Start</button>
             <div id="countdown">0s</div>
         </div>
         <div style="color: rgb(192, 191, 191)">Top Scores:</div>
+        <div id="best-score"></div>
 
     </header>
     <main>
 
         <div>Current points: <span id="current-points">0</span></div>
-        <div>Current task: <span id="current-task">Press Start</span></div>
+        <div id="current-task-wrapper">
+            Current task:
+            <div id="task-range">Press Start</div>
+            <div id="task-round"></div>
+        </div>
 
         <div class="main-counter-row main-row-group">
             <button id="plus-one-btn">+1</button>
@@ -35,16 +45,18 @@
             <button id="plus-ten-btn" disabled>+10</button>
             <button id="minus-ten-btn" disabled>-10</button>
             <button id="reset-count-btn">Reset</button>
+            <!-- added early submit, only active during rounds -->
+            <button id="submit-btn">Submit</button>
         </div>
 
         <h4>Current number: <span id="counter">0</span></h4>
 
         <div id="boost-shop" class="main-row-group">
             Buy boosts:
-            <button id="plus-ten-btn">Buy: +10</button>
-            <button id="plus-ten-btn">Buy: -10</button>
-            <button id="plus-ten-btn">Buy: +100</button>
-            <button id="plus-ten-btn">Buy: -100</button>
+            <button id="buy-plus-ten">Buy: +10</button>
+            <button id="buy-minus-ten">Buy: -10</button>
+            <button id="buy-plus-hundred">Buy: +100</button>
+            <button id="buy-minus-hundred">Buy: -100</button>
         </div>
     </main>
 </body>

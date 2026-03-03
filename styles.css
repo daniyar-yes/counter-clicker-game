@@ -43,6 +43,24 @@ header {
     }
 }
 
+#current-task-wrapper {
+    text-align: center;
+}
+
+#task-range, #task-round {
+    margin-top: 4px;
+}
+
+#best-score {
+    font-size: 0.9em;
+    margin-top: 4px;
+}
+
+#best-score ol {
+    padding-left: 1.2em;
+    margin: 0;
+}
+
 #countdown {
     text-align: center;
 }
