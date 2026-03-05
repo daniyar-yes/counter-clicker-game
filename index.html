@@ -14,6 +14,7 @@
 <body>
     <header>
         <div id="rules-section">
+            <h2 class="section-title">Rules / goals</h2>
             <p>Use '+,-' buttons to get the current number to fall within range prompted to you.</p>
         </div>
         <div id="game-start-section">
@@ -28,10 +29,6 @@
             </div>
             <button id="start-btn">Start</button>
             <div id="countdown">0s</div>
-        </div>
-        <div id="scores-block">
-            <div class="scores-title">Top Scores</div>
-            <div id="best-score"></div>
         </div>
     </header>
     <main>
@@ -56,12 +53,17 @@
         <h4>Current number: <span id="counter">0</span></h4>
 
         <div id="boost-shop" class="main-row-group">
-            Buy boosts:
+            <span id="boost-shop-label">Buy boosts</span>
             <button id="buy-plus-ten">Buy: +10</button>
             <button id="buy-minus-ten">Buy: -10</button>
             <button id="buy-plus-hundred">Buy: +100</button>
             <button id="buy-minus-hundred">Buy: -100</button>
         </div>
+
+        <section id="scores-block">
+            <h2 class="section-title scores-title">Top Scores</h2>
+            <div id="best-score"></div>
+        </section>
     </main>
 </body>
 
