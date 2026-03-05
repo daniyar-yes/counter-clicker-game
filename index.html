@@ -5,12 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Click it!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
     <link href="styles.css" rel="stylesheet" />
 </head>
 
 <body>
     <header>
-        <div id="rules-section">Rules/goals:
+        <div id="rules-section">
             <p>Use '+,-' buttons to get the current number to fall within range prompted to you.</p>
         </div>
         <div id="game-start-section">
@@ -26,9 +29,10 @@
             <button id="start-btn">Start</button>
             <div id="countdown">0s</div>
         </div>
-        <div style="color: rgb(192, 191, 191)">Top Scores:</div>
-        <div id="best-score"></div>
-
+        <div id="scores-block">
+            <div class="scores-title">Top Scores</div>
+            <div id="best-score"></div>
+        </div>
     </header>
     <main>
 
