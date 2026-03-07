@@ -166,10 +166,10 @@ header {
 /* Top scores: compact section below main game */
 #scores-block {
     width: 100%;
-    max-width: 560px;
-    margin: 24px auto 0;
+    max-width: 320px;
+    margin: 0;
     padding: 14px 18px;
-    background: var(--surface);
+    background: var(--bg);
     border: 1px solid var(--border);
     border-radius: var(--radius);
 }
