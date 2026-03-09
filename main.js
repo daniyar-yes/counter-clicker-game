@@ -54,6 +54,10 @@ const buyPlusTenBtn = document.querySelector("#buy-plus-ten");
 const buyMinusTenBtn = document.querySelector("#buy-minus-ten");
 const buyPlusHundredBtn = document.querySelector("#buy-plus-hundred");
 const buyMinusHundredBtn = document.querySelector("#buy-minus-hundred");
+const emptyNameWarning = document.querySelector('#empty-name-warning')
+const emptyWarning1 = document.querySelector('#empty-warning-1')
+const emptyWarning2 = document.querySelector('#empty-warning-2')
+const nameBorder = document.querySelector('#name-border')
 
 // boost ownership state
 let boosts = {
@@ -138,10 +142,50 @@ time60Btn.addEventListener("click", () => {
   if (roundEl) roundEl.textContent = "";
 });
 
+// Start button will be disabled and the player name input will be with red borders and a placeholder stating add a name please
+
+ startBtn.disabled = true
+  playerNameInput.addEventListener('blur', () => {
+    if (playerNameInput.value ==="") {
+    // emptyNameWarning.style.
+    emptyWarning1.textContent = '!'
+    emptyWarning1.style.borderWidth = '1px'
+    emptyWarning2.textContent = ' Enter a name'
+    nameBorder.style.borderWidth = '1px'
+  } else if (playerNameInput !== "") {
+    startBtn.disabled = false
+    emptyWarning1.textContent = ''
+    emptyWarning1.style.borderWidth = '0'
+    emptyWarning2.textContent = ''
+    nameBorder.style.borderWidth = '0'
+  }
+  })
+  
+function nameWarningSignOn() {
+  emptyWarning1.textContent = '!'
+    emptyWarning1.style.borderWidth = '1px'
+    emptyWarning2.textContent = ' Enter a name'
+    nameBorder.style.borderWidth = '1px'
+}
+function nameWarningSignOff() {
+  startBtn.disabled = false
+    emptyWarning1.textContent = ''
+    emptyWarning1.style.borderWidth = '0'
+    emptyWarning2.textContent = ''
+    nameBorder.style.borderWidth = '0'
+}
+
+
 // =====================
 // Start / Stop
 // =====================
 startBtn.addEventListener("click", () => {
+  if (playerNameInput.value.trim() === "") {  // Checks the input value
+    nameWarningSignOn();
+    return;  // Prevents starting the game
+  } else {
+    nameWarningSignOff();  // Clear warnings if name is provided
+  }
   if (isGameRunning) return;
   startGame();
 });
