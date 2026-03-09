@@ -142,11 +142,12 @@ function buyBoost(type) {
   if (!gameRunning) return;
 
   // Simple prices (tweak freely)
+  // In this commit I reduced the prices to make it more accessible and fun to experiment with different boosts. The game is meant to be enjoyable and not too grindy, so I wanted to ensure players can easily try out the various options without feeling like they need to save up for a long time. This way, players can quickly see the impact of each boost and have more fun experimenting with different strategies during their play sessions.
   const prices = {
-    plus10: 3,
-    minus10: 3,
-    plus100: 10,
-    minus100: 10,
+    plus10: 1, // -2 from original price 
+    minus10: 1, // -2 from original price
+    plus100: 5, // -5 from original price
+    minus100: 5, // -5 from original price
   };
 
   const cost = prices[type];
