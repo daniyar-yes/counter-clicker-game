@@ -118,24 +118,22 @@ resetCountButton.addEventListener("click", () => {
 });
 
 // =====================
-// Time select
+// Time select (Goal: Immediate Update)
 // =====================
-time30Btn.addEventListener("click", () => {
-  if (isGameRunning) return;
-  selectedTimeLength = 30;
-  const rangeEl = document.querySelector("#task-range");
-  const roundEl = document.querySelector("#task-round");
-  if (rangeEl) rangeEl.textContent = "Selected: 30s. Press Start.";
-  if (roundEl) roundEl.textContent = "";
+time30Btn.addEventListener('click', () => {
+    if (isGameRunning) return;
+    selectedTimeLength = 30;
+    timerDisplay.textContent = "30";
+    time30Btn.classList.add('active');
+    time60Btn.classList.remove('active');
 });
 
-time60Btn.addEventListener("click", () => {
-  if (isGameRunning) return;
-  selectedTimeLength = 60;
-  const rangeEl = document.querySelector("#task-range");
-  const roundEl = document.querySelector("#task-round");
-  if (rangeEl) rangeEl.textContent = "Selected: 60s. Press Start.";
-  if (roundEl) roundEl.textContent = "";
+time60Btn.addEventListener('click', () => {
+    if (isGameRunning) return;
+    selectedTimeLength = 60;
+    timerDisplay.textContent = "60";
+    time60Btn.classList.add('active');
+    time30Btn.classList.remove('active');
 });
 
 // =====================

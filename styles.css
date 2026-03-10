@@ -161,6 +161,7 @@ header {
     font-weight: 700;
     color: var(--accent);
     letter-spacing: 0.05em;
+    margin-top: 10px;
 }
 
 /* Top scores: compact section below main game */
@@ -208,7 +209,7 @@ main > div:first-child,
 }
 
 main > div:first-child span,
-#counter {
+#counter-value {
     color: var(--accent);
     font-weight: 700;
 }
