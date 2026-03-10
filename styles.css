@@ -99,7 +99,7 @@ header {
     border-radius: var(--radius-sm);
     background: var(--bg);
     color: var(--text);
-    width: 120px;
+    width: 200px;
 }
 
 #player-name::placeholder {
@@ -298,6 +298,36 @@ main h4 {
     font-size: 0.9rem;
 }
 
+/* #empty-name-warning {
+    color: red;
+    padding: .20rem;
+    border: solid 2px;
+    border-color: red;
+    background-color: white;
+    border-radius: 25px;
+    width: 40%;
+    
+} */
+#empty-warning-1 {
+    font-size: 1rem;
+    color: red;
+    border-style: solid;
+    padding-right: .5rem ;
+    padding-left: .5rem ;
+    border-radius: 1rem;
+    border-color: red;
+    border-width: 0;
+}
+#empty-warning-2 {
+    font-size: 1rem;
+    color: red;
+    
+}
+#name-border {
+    border-style: solid;
+    border-width: 0;
+    border-color: red;
+}
 /* Responsive: stack header on small screens */
 @media (max-width: 700px) {
     header {
@@ -309,3 +339,5 @@ main h4 {
         max-width: none;
     }
 }
+
+
