@@ -54,6 +54,8 @@ const buyPlusTenBtn = document.querySelector("#buy-plus-ten");
 const buyMinusTenBtn = document.querySelector("#buy-minus-ten");
 const buyPlusHundredBtn = document.querySelector("#buy-plus-hundred");
 const buyMinusHundredBtn = document.querySelector("#buy-minus-hundred");
+
+// Empty name sign objects
 const emptyNameWarning = document.querySelector('#empty-name-warning')
 const emptyWarning1 = document.querySelector('#empty-warning-1')
 const emptyWarning2 = document.querySelector('#empty-warning-2')
