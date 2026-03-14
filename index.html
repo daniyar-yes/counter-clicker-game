@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-    <link>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Click it!</title>
@@ -14,37 +13,45 @@
     <link href="styles.css" rel="stylesheet" />
 </head>
 
-
 <body>
     <header>
         <div id="rules-section">
             <h2 class="section-title">Rules / goals</h2>
             <p>Use '+,-' buttons to get the current number to fall within range prompted to you.</p>
         </div>
+
+        <section id="scores-block">
+            <h2 class="section-title scores-title">Top Scores</h2>
+            <div id="best-score"></div>
+        </section>
+    </header>
+
+    <main>
         <div id="game-start-section">
             <div>
                 <button id="time-30-btn">30s</button>
                 <button id="time-60-btn">60s</button>
             </div>
+
             <div>
                 <label for="player-name">Name:</label>
-                <div id = 'name-border'><input id="player-name" type="text" placeholder="Player" /></div>
-                
+                <div id="name-border">
+                    <input id="player-name" type="text" placeholder="Player" />
+                </div>
                 <button id="pause-btn" disabled>Pause</button>
             </div>
-            <div id="empty-name-warning"><span id="empty-warning-1"></span><span id="empty-warning-2"></span></div>
+
+            <div id="empty-name-warning">
+                <span id="empty-warning-1"></span>
+                <span id="empty-warning-2"></span>
+            </div>
+
             <button id="start-btn">Start</button>
             <div id="countdown">0s</div>
         </div>
-     
-        <section id="scores-block">
-            <h2 class="section-title scores-title">Top Scores</h2>
-            <div id="best-score"></div>
-        </section>   
-    </header>
-    <main>
 
         <div>Current points: <span id="current-points">0</span></div>
+
         <div id="current-task-wrapper">
             Current task:
             <div id="task-range">Press Start</div>
@@ -57,7 +64,6 @@
             <button id="plus-ten-btn" disabled>+10</button>
             <button id="minus-ten-btn" disabled>-10</button>
             <button id="reset-count-btn">Reset</button>
-            <!-- added early submit, only active during rounds -->
             <button id="submit-btn">Submit</button>
         </div>
 
@@ -70,24 +76,9 @@
             <button id="buy-plus-hundred">Buy: +100</button>
             <button id="buy-minus-hundred">Buy: -100</button>
         </div>
-        <div id="game-start-section">
-            <div>
-                <button id="time-30-btn">30s</button>
-                <button id="time-60-btn">60s</button>
-            </div>
-            <div>
-                <label for="player-name">Name:</label>
-                <input id="player-name" type="text" placeholder="Player" />
-                <button id="pause-btn" disabled>Pause</button>
-            </div>
-            <button id="start-btn">Start</button>
-            <div id="countdown">0s</div>
-        </div>
-
     </main>
+
+    <script src="main.js"></script>
 </body>
-
-<script src="main.js"></script>
-
 
 </html>

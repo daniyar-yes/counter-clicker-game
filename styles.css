@@ -1,18 +1,26 @@
 /* ----- Variables ----- */
 :root {
-    --bg: #0f0f12;
-    --surface: #1a1a1f;
-    --surface-hover: #24242b;
-    --border: #2e2e36;
-    --text: #e8e8ec;
-    --text-muted: #9a9aa6;
-    --accent: #7c6cf9;
-    --accent-hover: #9285fa;
-    --accent-muted: rgba(124, 108, 249, 0.25);
-    --success: #4ade80;
-    --danger: #f87171;
-    --radius: 10px;
-    --radius-sm: 6px;
+    --bg: #f4f6fb;
+    --surface: #ffffff;
+    --surface-soft: #f1f5f9;
+    --surface-hover: #e6edf5;
+    --border: #d6dee8;
+
+    --text: #1f2937;
+    --text-muted: #6b7280;
+
+    --accent: #4f46e5;
+    --accent-hover: #4338ca;
+    --accent-muted: rgba(79, 70, 229, 0.12);
+
+    --success: #16a34a;
+    --danger: #dc2626;
+
+    --radius: 12px;
+    --radius-sm: 8px;
+
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+
     --font: "DM Sans", system-ui, sans-serif;
 }
 
@@ -27,269 +35,197 @@ body {
     line-height: 1.5;
     color: var(--text);
     background: var(--bg);
+
     margin: 0;
-    padding: 24px;
-    min-height: 100vh;
+    padding: 40px 24px;
+
+    display: flex;
+    justify-content: center;
+
+    body>header,
+    body>main {
+        max-width: 1100px;
+    }
 }
 
-/* ----- Header (top part) ----- */
+/* ----- Header ----- */
 header {
-    display: grid;
-    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.7fr);
-    align-items: start;
-    gap: 24px;
-    max-width: 900px;
-    margin: 0 auto 32px;
-    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    width: 280px;
+}
+
+/* ----- Rules ----- */
+#rules-section {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-}
-
-#rules-section {
-    max-width: 260px;
+    padding: 18px;
+    box-shadow: var(--shadow);
 }
 
 .section-title {
     font-weight: 700;
     font-size: 0.95rem;
-    color: var(--text);
-    letter-spacing: 0.02em;
-    margin: 0 0 6px;
+    margin-bottom: 6px;
 }
 
 #rules-section p {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: var(--text-muted);
-    margin: 0;
-    line-height: 1.45;
 }
 
-/* Game start block: centered */
+/* ----- Top Scores ----- */
+#scores-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: var(--shadow);
+}
+
+.scores-title {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-bottom: 10px;
+}
+
+/* ----- Main Game Panel ----- */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 18px;
+
+    width: 520px;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    padding: 24px;
+    box-shadow: var(--shadow);
+}
+
+/* ----- Start Section ----- */
 #game-start-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+
+    width: 100%;
+    max-width: 340px;
+
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px;
 }
 
-#game-start-section > div:first-child {
+#game-start-section>div {
     display: flex;
-    gap: 8px;
-}
-
-#game-start-section > div:nth-child(2) {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
     gap: 8px;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
-#game-start-section label {
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
+/* ----- Input ----- */
 #player-name {
     font-family: var(--font);
     font-size: 0.95rem;
-    padding: 8px 12px;
+    padding: 8px 10px;
+
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
-    background: var(--bg);
-    color: var(--text);
-    width: 200px;
+    background: white;
+    width: 180px;
 }
 
-#player-name::placeholder {
-    color: var(--text-muted);
+#player-name:focus {
+    outline: none;
+    border-color: var(--accent);
 }
 
-#start-btn {
-    min-width: 140px;
-    padding: 10px 20px;
+/* ----- Buttons ----- */
+button {
     font-family: var(--font);
+    font-size: 0.9rem;
     font-weight: 600;
-    font-size: 1rem;
-    color: #fff;
-    background: var(--accent);
-    border: none;
+
+    padding: 8px 14px;
+
     border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+
+    background: var(--surface-soft);
     cursor: pointer;
-    transition: background 0.2s;
+
+    transition: all .15s ease;
+}
+
+button:hover:not(:disabled) {
+    background: var(--surface-hover);
+}
+
+button:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+/* ----- Start Button ----- */
+#start-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
 }
 
 #start-btn:hover {
     background: var(--accent-hover);
 }
 
-#time-30-btn,
-#time-60-btn,
-#pause-btn {
-    font-family: var(--font);
-    font-size: 0.9rem;
-    padding: 6px 12px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    background: var(--surface-hover);
-    color: var(--text);
-    cursor: pointer;
-    transition: background 0.2s, border-color 0.2s;
-}
-
-#time-30-btn:hover,
-#time-60-btn:hover,
-#pause-btn:not(:disabled):hover {
-    background: var(--border);
-}
-
-#time-30-btn.active,
-#time-60-btn.active {
-    background: var(--accent-muted);
-    border-color: var(--accent);
-    color: var(--accent);
-}
-
-#pause-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-#countdown {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: 0.05em;
-}
-
-/* Top scores: compact section below main game */
-#scores-block {
-    width: 100%;
-    max-width: 320px;
-    margin: 0;
-    padding: 14px 18px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-}
-
-.scores-title {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-#best-score {
-    font-size: 0.9rem;
-    color: var(--text);
-}
-
-#best-score ol {
-    padding-left: 1.2em;
-    margin: 0;
-}
-
-/* ----- Main ----- */
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    max-width: 560px;
-    margin: 0 auto;
-}
-
-main > div:first-child,
-#current-task-wrapper {
-    font-weight: 600;
-    font-size: 1rem;
-}
-
-main > div:first-child span,
-#counter {
-    color: var(--accent);
-    font-weight: 700;
-}
-
-#current-task-wrapper {
-    text-align: center;
-}
-
-#task-range,
-#task-round {
-    margin-top: 4px;
-    font-weight: 400;
-    color: var(--text-muted);
-}
-
-.main-counter-row,
-.main-row-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-}
-
-.main-counter-row button,
-.main-row-group button {
-    font-family: var(--font);
-    font-size: 0.95rem;
-    font-weight: 600;
-    padding: 10px 16px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    background: var(--surface);
-    color: var(--text);
-    cursor: pointer;
-    transition: background 0.2s, border-color 0.2s, transform 0.1s;
-}
-
-.main-counter-row button:hover:not(:disabled),
-.main-row-group button:hover:not(:disabled) {
-    background: var(--surface-hover);
-    border-color: var(--text-muted);
-}
-
-.main-counter-row button:active:not(:disabled),
-.main-row-group button:active:not(:disabled) {
-    transform: scale(0.98);
-}
-
-.main-counter-row button:disabled,
-.main-row-group button:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-}
-
-#reset-count-btn {
-    color: var(--text-muted);
-}
-
+/* ----- Submit Button ----- */
 #submit-btn {
     background: var(--accent-muted);
     border-color: var(--accent);
     color: var(--accent);
 }
 
-#submit-btn:hover:not(:disabled) {
-    background: rgba(124, 108, 249, 0.35);
+/* ----- Counter Buttons ----- */
+.main-counter-row,
+.main-row-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-main h4 {
-    font-size: 1.1rem;
+/* ----- Current Task ----- */
+#current-task-wrapper {
+    text-align: center;
     font-weight: 600;
-    margin: 8px 0 0;
 }
 
-#boost-shop {
-    align-items: center;
-    margin-top: 8px;
+#task-range,
+#task-round {
+    color: var(--text-muted);
+    font-weight: 400;
 }
+
+/* ----- Current Number ----- */
+main h4 {
+    font-size: 1.05rem;
+    margin: 6px 0;
+}
+
+/* ----- Boost Shop ----- */
 #boost-shop {
     align-items: center;
-    margin-top: 8px;
     gap: 10px;
 }
 
@@ -298,46 +234,58 @@ main h4 {
     font-size: 0.9rem;
 }
 
-/* #empty-name-warning {
-    color: red;
-    padding: .20rem;
-    border: solid 2px;
-    border-color: red;
-    background-color: white;
-    border-radius: 25px;
-    width: 40%;
-    
-} */
+/* ----- Warnings (unchanged behavior) ----- */
 #empty-warning-1 {
     font-size: 1rem;
     color: red;
     border-style: solid;
-    padding-right: .5rem ;
-    padding-left: .5rem ;
+    padding-right: .5rem;
+    padding-left: .5rem;
     border-radius: 1rem;
     border-color: red;
     border-width: 0;
 }
+
 #empty-warning-2 {
     font-size: 1rem;
     color: red;
-    
 }
+
 #name-border {
     border-style: solid;
     border-width: 0;
     border-color: red;
 }
-/* Responsive: stack header on small screens */
+
+/* ----- Responsive ----- */
 @media (max-width: 700px) {
     header {
         grid-template-columns: 1fr;
-        align-items: stretch;
     }
 
-    #rules-section {
-        max-width: none;
+    main {
+        max-width: 95%;
     }
 }
 
+body {
+    display: flex;
+    justify-content: center;
+}
 
+body>header,
+body>main {
+    margin: 0 10px;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+main:hover {
+    transform: translateY(-2px);
+    transition: transform .15s ease;
+}
